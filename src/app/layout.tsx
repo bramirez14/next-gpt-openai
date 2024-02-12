@@ -1,25 +1,25 @@
 import Link from "next/link";
-import Orthography  from "./orthography/page";
+import Orthography from "./orthography/page";
 import AssistantPage from "./assistant/page";
 import "./globals.css";
 
 export const menuRoutes = [
   {
-    id:1,
+    id: 1,
     to: "/orthography",
     icon: "fa-solid fa-spell-check",
     title: "Ortografía",
     description: "Corregir ortografía",
-    component: <Orthography/>
+    component: <Orthography />,
   },
- /*   {
+  /*   {
     to: "/pros-cons",
     icon: "fa-solid fa-code-compare",
     title: "Pros & Cons",
     description: "Comparar pros y contras",
     component: <ProsConsPage />
   }, */
-/*  {
+  /*  {
     to: "/pros-cons-stream",
     icon: "fa-solid fa-water",
     title: "Como stream",
@@ -66,35 +66,30 @@ export const menuRoutes = [
     icon: "fa-solid fa-user",
     title: "Asistente",
     description: "Información del asistente",
-    component: <AssistantPage />
-  }, 
+    component: <AssistantPage />,
+  },
 ];
 export default function DashboardLayout({
-    children, // will be a page or nested layout
-  }: {
-    children: React.ReactNode
-  }) {
-
-
-   
-    return (
-      <section>
-        {/* Include shared UI here e.g. a header or sidebar */}
-        <nav className="hidden sm:flex flex-col ml-5 w-[370px] min-h-[calc(100vh-3.0rem)] bg-white bg-opacity-10 p-5 rounded-3xl">
-       
+  children, // will be a page or nested layout
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <main className="flex flex-row mt-7">
+      {/* Include shared UI here e.g. a header or sidebar */}
+      <nav className="hidden sm:flex flex-col ml-5 w-[370px] min-h-[calc(100vh-3.0rem)] bg-white bg-opacity-10 p-5 rounded-3xl">
         <span className="text-xl">Bienvenido</span>
-        <ul className="flex flex-col justify-center  bg-gray-800 rounded-md p-2 transition-colors" >
-      { menuRoutes.map((route) => (
-        <li key={route.id} className="text-white text-lg font-semibold">
-          <Link href={`${route.to}`}>{route.title}</Link>
-        </li>
-      ))}
-    </ul>
-
-
-        </nav>
-   
-        {children}
-      </section>
-    )
-  }
+        <ul className="flex flex-col justify-center  bg-gray-800 rounded-md p-2 transition-colors">
+          {menuRoutes.map((route) => (
+            <li key={route.id} className="text-white text-lg font-semibold">
+              <Link href={`${route.to}`}>{route.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <section
+      className="mx-3 sm:mx-20 flex flex-col w-full h-[calc(100vh-50px)]  bg-white bg-opacity-10 p-5 rounded-3xl"
+      >{children}</section>
+    </main>
+  );
+}
